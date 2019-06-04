@@ -8,11 +8,13 @@ import TermsOfService from "../TermsOfService";
 import FrontPage from "../FrontPage";
 import styles from "./style";
 
+const tema = localStorage.getItem('tema');
+
 const theme = createMuiTheme( {
   palette: {
     type: "dark",
     background: {
-      default: "#0c0c0c"
+      default: tema
     },
     primary: {
       main: "#cccccc"

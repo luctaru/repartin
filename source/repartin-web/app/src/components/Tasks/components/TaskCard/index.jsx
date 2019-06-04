@@ -45,12 +45,21 @@ class ListCard extends Component {
     
   }
 
+  handleDelete = async (e) => {
+      await service.delete('task', this.props.task._id).then(
+        alert('Tarefa deletada com sucesso')
+      )
+  }
+
 
   render() {
     // var a = this.getUsersNames();
+    console.log(this.props);
     return (
       <View task={this.props.task}
-        names={this.state.names} />
+        names={this.state.names} 
+          deleteTask={service}
+        />
     );
   }
 }

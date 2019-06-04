@@ -4,6 +4,7 @@ import service from "../../services/service";
 import { firebaseConnect } from 'react-redux-firebase'
 import { compose } from 'redux'
 import { withRouter } from 'react-router-dom';
+import { async } from "q";
 
 class Tasks extends Component {
 
@@ -14,13 +15,14 @@ class Tasks extends Component {
       card: {
         blocks: [{
           label: "SUAS TAREFAS",
-          value: "20"
+          value: ""
         }, {
           label: "ATRASADAS",
-          value: "2"
+          value: ""
         }],
         quickTip: "Quick Tip"
-      }
+      },
+      original:[]
     }
     this.handleQuickTip = this.handleQuickTip.bind(this);
   }
@@ -30,13 +32,54 @@ class Tasks extends Component {
     this.myTasks()
   }
 
-  handleSearch(value) {
-    // console.log( value );
+  handleSearch = async(value) => {
+
+    let searchFilter = value;
+    searchFilter = searchFilter.replace(new RegExp('(ã|á|à|Ã|À|Á)', 'gi'), 'a');
+    searchFilter = searchFilter.replace(new RegExp('(é|è|É|È)', 'gi'), 'e');
+    searchFilter = searchFilter.replace(new RegExp('(í|ì|Í|Ì)', 'gi'), 'i');
+    searchFilter = searchFilter.replace(new RegExp('(ó|ò|õ|Ò|Ó|Õ)', 'gi'), 'o');
+    searchFilter = searchFilter.replace(new RegExp('(ú|ù|Ú|Ù)', 'gi'), 'u');
+    searchFilter = searchFilter.replace(new RegExp('(ç|Ç)', 'gi'), 'c');
+    const patern = `^${searchFilter}`;
+
+    console.log("state");
+    console.log(this.state);
+
+    let x;
+    let original;
+
+    if(this.state.original.length == 0){
+      original = this.state.tasks.task;
+      this.setState({original});
+    }
+
+    if(this.state.tasks.task) {
+      x = this.state.tasks.task;
+    } else {
+      x = this.state.tasks;
+    }
+
+    let tasks = x.filter(c => new RegExp(patern, 'gi').test(c.name));
+
+    if(value == "" || value == null){
+      tasks = this.state.original;
+    }
+
+    this.setState({ tasks });
+
+    console.log("tasks");
+    console.log(tasks);
+    console.log("statetasks");
+    console.log(this.state.tasks);
+
   }
 
   handleFilter(value) {
-    // console.log( value );
+    console.log( value );
   }
+
+
 
   handleQuickTip() {
     const card = { ...this.state.card };
@@ -48,6 +91,8 @@ class Tasks extends Component {
     const { user } = await service.getById('user', this.props.firebase.auth().currentUser.uid);
     let tasks = await service.getByHouse('task', user.houseID);
     this.setState({ tasks })
+    console.log("LOAD");
+    console.log(this.state);
   }
 
   myTasks = async () => {
@@ -67,10 +112,13 @@ class Tasks extends Component {
         return filtered
       }, [])
 
+      
+
       myDelayedTasks = tasks.task.reduce(function (filtered, task) {
+
         for (let i = 0; i < task.assignedUserID.length; i++) {
 
-          if (task.assignedUserID[i] == currentUser && task.executionDate > new Date().toLocaleDateString()) {
+          if (task.assignedUserID[i] == currentUser && new Date(task.executionDate).toISOString().slice(0,10) < new Date().toISOString().slice(0,10)) {
             filtered.push(task)
           }
         }
@@ -78,6 +126,7 @@ class Tasks extends Component {
       }, [])
 
       var card = this.state.card
+
       card.blocks[0].value = myTasks.length
       card.blocks[1].value = myDelayedTasks.length
       this.setState({ card })
@@ -93,6 +142,7 @@ class Tasks extends Component {
   }
 
   render() {
+
     return (
       <View
         {...this.state}

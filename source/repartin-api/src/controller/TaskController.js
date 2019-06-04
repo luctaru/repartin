@@ -46,7 +46,7 @@ module.exports = {
 
     getByHouse: function (req, res) {
         var houseID = req.params.id;
-        modelTask.find({ houseID : houseID , removed : false}, function (err, task) {
+        modelTask.find({ houseID : houseID }, function (err, task) {
             if (err) { return res.status(500).json({ message: 'Ops! Ocorreu um erro ao buscar task', error: err }) };
             if (task) {
                 return res.json({ task });
@@ -58,7 +58,7 @@ module.exports = {
 
     deleteById: function (req, res) {
         var id = req.params.id;
-        modelTask.findByIdAndRemove(id, function (err, task) {
+        modelTask.findByIdAndRemove({ _id: id }, function (err, task) {
             if (err) { return res.status(500).json({ message: 'Ops! Ocorreu um erro deletar task', error: err }) };
             return res.json({ message: 'Task excluido com sucesso!' });
         });

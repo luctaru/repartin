@@ -45,6 +45,7 @@ class CreateHouse extends Component {
   handleChangeComplete = (color) => {
     let house = this.state.house;
     house.color = color.hex;
+    localStorage.setItem("tema", color.hex);
     this.setState({ house });
   };
 

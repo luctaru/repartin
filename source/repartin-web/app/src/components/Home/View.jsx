@@ -8,6 +8,7 @@ import Tasks from "../Tasks";
 import Expenses from "../Expenses";
 import Profile from "../Profile";
 import TasksAdd from "../Tasks/components/TaskCreate"
+import TaskUpdate from "../Tasks/components/TaskUpdate"
 import ExpenseAdd from "../Expenses/components/ExpenseCreate"
 import Members from "../Members";
 import CreateHouse from "./components/Welcome/components/CreateHouse";
@@ -38,7 +39,8 @@ const View = ({ isMember, collapse, setMember, setCollapse, classes, pending, lo
                 <Route path="/perfil" component={Profile} />
                 <Route exact path="/tarefas" component={Tasks} />
                 <Route path="/tarefas/nova" component={TasksAdd} />
-                <Route path="/tarefas/:id" component={TasksAdd} />
+                
+                <Route path="/tarefas/editar/:id" component={TaskUpdate} />
                 <Route exact path="/financas" component={Expenses} />
                 <Route path="/financas/nova" component={ExpenseAdd} />
                 <Route path="/financas/:id" component={ExpenseAdd} />

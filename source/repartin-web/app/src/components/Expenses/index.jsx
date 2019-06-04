@@ -14,10 +14,10 @@ class Expenses extends Component {
       card: {
         blocks: [ {
           label: "GASTO",
-          value: 0
+          value: ""
         }, {
           label: "PAGO",
-          value: "200,00"
+          value: ""
         } ],
         quickTip: "Quick Tip"
       }

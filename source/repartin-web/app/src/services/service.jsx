@@ -69,7 +69,7 @@ const service = {
     delete: async (path, id) => {
         console.log(`Deletando documento em ${path} com o id: ${JSON.stringify(id)}`);
 
-        return axios.delete(`${url}/${path}`, id)
+        return axios.delete(`${url}/${path}/${id}`)
             .then(response => {
                 return response.data;
             }).catch((error) => {

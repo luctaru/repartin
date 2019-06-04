@@ -10,6 +10,9 @@ export default ( theme ) => {
     status: {
       color: "#FFB300"
     },
+    statusConcluded: {
+      color: "#2CF700"
+    },
     actions: {
       display: "flex",
       justifyContent: "space-between",
