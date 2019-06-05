@@ -6,7 +6,10 @@ export default createStyles( {
     height: "100vh",
     padding: "16px",
     overflowY: "scroll",
-    overflowX: "hidden"
+    overflowX: "hidden",
+    display:"flex",
+    justifyContent:"center",
+    margin:"0px",
   },
   homeWrapperCollapsed: {
     maxHeight: "calc( 100vh - 56px )",

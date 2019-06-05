@@ -31,8 +31,12 @@ const View = ( { aux, users, handleChange, handleSubmit, handleChangeUser, class
 
       
 
-      console.log("AUX", aux.task);
-      console.log("state", state);
+    //   console.log("AUX", aux.task);
+    //   if(state != undefined){
+    //       console.log("state", state);
+    //   }
+      
+    
 
     return (
         <ValidatorForm
@@ -50,14 +54,9 @@ const View = ( { aux, users, handleChange, handleSubmit, handleChangeUser, class
                     {aux.task != undefined && (
                         <TextValidator
                         name='name'
-                        label='Nome da tarefa'
+                        label={'Nome: '+aux.task.name}
                         //value={aux.task.name}
-                        onChange={e => {
-                            console.log(state);
-                            
-                            //this.handleChange(e.target.value);
-                        }}
-                        validators={['required', 'minLength']}
+                        onChange={handleChange}
                         errorMessages={['Campo obrigatório', 'O nome precisa ter mais que 3 caracteres']}
                         fullWidth
                     />
@@ -68,12 +67,12 @@ const View = ( { aux, users, handleChange, handleSubmit, handleChangeUser, class
                 {aux.task != undefined && (
                     <TextValidator
                         name='description'
-                        label='Descrição'
+                        label={'Descrição: ' + aux.task.description}
                         multiline
                         rows="2"
                         rowsMax="5"
                         //value={ aux.task.description }
-                        //onChange={handleChange}
+                        onChange={handleChange}
                         fullWidth
                     />
                 )}
@@ -81,14 +80,16 @@ const View = ( { aux, users, handleChange, handleSubmit, handleChangeUser, class
                 </Grid>
                 <Grid item xs={12}>
                     <FormGroup>
+                    <Typography color="primary" component="p" variant="body2">{'Data de realização: ' + duDate}</Typography>
                     {aux.task != undefined && (
+                        
                         <TextValidator
                             className={classes.textField}
-                            label='Data de realização'
+                            
                             name='dueDate'
                             type='date'
-                            value={ duDate }
-                            //onChange={handleChange}
+                            //value={ duDate }
+                            onChange={handleChange}
                             fullWidth
                         />
                     )}
@@ -97,14 +98,15 @@ const View = ( { aux, users, handleChange, handleSubmit, handleChangeUser, class
                 </Grid>
                 <Grid item xs={12}>
                     <FormGroup>
+                    <Typography color="primary" component="p" variant="body2">{'Vencimento: ' + duDate}</Typography>
                     {aux.task != undefined && (
                         <TextValidator
                             className={classes.textField}
-                            label='Vencimento'
+                            //label={'Vencimento: ' + execDate}
                             name='executionDate'
                             type='date'
-                            value={execDate}
-                            //onChange={handleChange}
+                            //value={execDate}
+                            onChange={handleChange}
                             fullWidth
                         />
                     )}
@@ -112,11 +114,14 @@ const View = ( { aux, users, handleChange, handleSubmit, handleChangeUser, class
                     </FormGroup>
                 </Grid>
                 <Grid item xs={12}>
+                <Typography color="primary" component="p" variant="body2">{'Usuário'}</Typography>
                 {aux.task != undefined && (
                     <Select
                         className={classes.textField}
+                        //label={'Usuário'}
                         name='assignedUserID'
                         multiple
+                        disabled
                         value={ aux.task.assignedUserID }
                         value={aux.task.assignedUserID}
                         //onChange={handleChange}

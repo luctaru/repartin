@@ -118,7 +118,7 @@ class Tasks extends Component {
 
         for (let i = 0; i < task.assignedUserID.length; i++) {
 
-          if (task.assignedUserID[i] == currentUser && new Date(task.executionDate).toISOString().slice(0,10) < new Date().toISOString().slice(0,10)) {
+          if (task.assignedUserID[i] == currentUser && new Date(task.executionDate).toISOString().slice(0,10) < new Date().toISOString().slice(0,10) && task.removed == false) {
             filtered.push(task)
           }
         }

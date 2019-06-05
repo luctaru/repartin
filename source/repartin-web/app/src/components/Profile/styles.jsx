@@ -6,7 +6,7 @@ export default ( theme ) => {
     houseBackground: {
       position: "relative",
       height: "172px",
-      margin: "-16px -16px 0 -16px"
+      margin: "-16px -16px 0 -16px",
     },
     backButton: {
       position: "absolute",

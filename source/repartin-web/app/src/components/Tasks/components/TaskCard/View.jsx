@@ -11,11 +11,14 @@ const View = ( { classes, task, names, deleteTask } ) => {
   return (
     <Card className={ classes.root } raised={true}>
       <CardContent className={classes.content}>
-      {!task.removed && (
+      {!task.removed && new Date(task.executionDate).toISOString().slice(0,10) > new Date().toISOString().slice(0,10) && (
         <Typography color="secondary" className={ classes.status } component="p" variant="caption">Aguardando</Typography>
       )}
       {task.removed && (
         <Typography color="secondary" className="statusConcluded" component="p" variant="caption">Concluído</Typography>
+      )}
+      {!task.removed && new Date(task.executionDate).toISOString().slice(0,10) < new Date().toISOString().slice(0,10) && (
+        <Typography color="secondary" className="statusConcluded" component="p" variant="caption">Atrasado</Typography>
       )}
         <Typography color="secondary" component="p" variant="h6">{task.name}</Typography>
         <Typography color="secondary" component="p" variant="body2">{task.description}</Typography>

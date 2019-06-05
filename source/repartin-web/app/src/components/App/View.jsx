@@ -7,6 +7,7 @@ import PrivacyPolicy from "../PrivacyPolice";
 import TermsOfService from "../TermsOfService";
 import FrontPage from "../FrontPage";
 import styles from "./style";
+import service from "../../services/service";
 
 const tema = localStorage.getItem('tema');
 
@@ -14,17 +15,21 @@ const theme = createMuiTheme( {
   palette: {
     type: "dark",
     background: {
-      default: tema
+      default: '#CF7C00'
     },
     primary: {
-      main: "#cccccc"
+      main: "#FFFFFF"
     },
     secondary: {
       main: "#333333"
     },
+    third: {
+      main: "#FFFFFF"
+    },
     text: {
-      primary: "#cccccc",
-      secondary: "#ffffff"
+      primary: "#FFFFFF",
+      secondary: "#FFFFFF",
+      third: "#FFFFFF",
     }
   },
   typography: {

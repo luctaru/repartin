@@ -7,7 +7,8 @@ export default ( theme ) => {
   return createStyles( {
     root: {
       textAlign: "center",
-      transform: ""
+      transform: "",
+      marginTop:"18%"
     },
     avatar: {
       width: avatarSize,

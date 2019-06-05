@@ -9,7 +9,7 @@ const View = ( { classes, loading } ) => (
       className={ classes.loader }
       sizeUnit={ "px" }
       size={ 130 }
-      color={ '#cccccc' }
+      color={ '#ffffff' }
       loading={ loading }
     />
   </div>

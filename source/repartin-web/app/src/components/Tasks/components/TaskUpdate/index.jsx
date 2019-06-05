@@ -15,18 +15,10 @@ class TaskUpdate extends Component {
     }
 
     handleChange = (e) => {
-        // const { name, value } = e.target;
-        // let task = this.state.task;
-        // task[name] = value;
-        // this.setState({ task })
-        var task = this.state.task;
-        if(e == "") {
-
-        }
-        
-        task.task.name = e;
-        this.setState({task});
-
+        const { name, value } = e.target;
+        let task = this.state.task;
+        task[name] = value;
+        this.setState({ task })
     }
 
     componentWillMount = async() => {
@@ -44,18 +36,41 @@ class TaskUpdate extends Component {
     }
 
     handleSubmit = async (e) => {
-        const useId = this.props.firebase.auth().currentUser.uid
-        const { user } = await service.getById('user', useId)
 
-        console.log("AQUIIII");
-        console.log(this.props.match.params.id);
+        console.log(e);
+        console.log(this.state.task.task);
+        console.log(e.target[0].value);
+        console.log(e.target[3].value);
+        console.log(e.target[4].value);
+        console.log(e.target[5].value);
+        console.log(e.target[6].value);
 
-        var form = this.state.task
-        form.useId = useId
-        form.houseID = user.houseID
+        var form = this.state.task.task;
+
+        form.name = e.target[0].value;
+        form.description = e.target[3].value;
+        form.dueDate = new Date(e.target[4].value).toISOString();
+        form.executionDate = new Date(e.target[5].value).toISOString();
+
+        console.log(form);
+
+        // const useId = this.props.firebase.auth().currentUser.uid
+        // const { user } = await service.getById('user', useId)
+
+        // console.log("AQUIIII");
+        // console.log(this.props.match.params.id);
+
+        // var form = this.state.task
+        // form.useId = useId
+        // form.houseID = user.houseID
         
-        await service.update('task', this.props.match.params.id, form)
-        this.props.history.push('/tarefas')
+        await service.update('task', this.props.match.params.id, form);
+        this.props.history.push('/tarefas');
+
+        // var x = await deleteTask.getById('task', task._id);
+        //     x.task.removed = true;
+        //     await deleteTask.update('task', task._id, x.task);
+        //     window.location.reload();
 
     }
 
@@ -78,8 +93,6 @@ class TaskUpdate extends Component {
     }
 
     render() {
-        console.log("render");
-        console.log(this.state.task);
         return (
             <View 
                 { ...this.state }

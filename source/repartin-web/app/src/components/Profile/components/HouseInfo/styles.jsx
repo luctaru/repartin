@@ -4,7 +4,10 @@ export default ( theme ) => {
 
   return createStyles( {
     root: {
-      textAlign: "center"
+      textAlign: "center",
+      display:"flex",
+      flexDirection:"column",
+      justifyContent:"center"
     },
     name: {
       paddingLeft: "40px"
@@ -24,14 +27,14 @@ export default ( theme ) => {
       fontSize: "1.6em"
     },
     address: {
-      display: "inline-block",
-      maxWidth: "180px"
     },
     id: {
-      marginTop: ".32rem"
+      marginTop: ".32rem",
+      alignItems:"center",
+      padding:"auto"
     },
     copyIcon: {
-      marginLeft: ".4rem",
+      margin: ".4rem",
       fontSize: "1em",
       transform: "translateY( -.4rem )"
     }

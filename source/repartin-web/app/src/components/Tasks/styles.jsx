@@ -7,8 +7,8 @@ export default ( theme ) => {
       height: "100vh"
     },
     body:{
-      maxWidth: "800px",
-      margin: "auto"
+      minWidth: "800px",
+      margin: "0px",
     },
     wrapper: {
       paddingTop: ".4rem"

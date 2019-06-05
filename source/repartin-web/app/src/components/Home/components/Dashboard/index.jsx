@@ -13,7 +13,7 @@ class Dashboard extends Component {
   }
 
   render() {
-
+    console.log("dash", this.props);
     return (
       <View
         { ...this.props }

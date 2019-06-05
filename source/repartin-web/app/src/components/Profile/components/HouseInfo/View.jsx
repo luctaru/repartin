@@ -18,13 +18,14 @@ const View = ( { house, admin, editHouse, copyId, classes } ) => {
           ) : '' 
         }
       </Typography>
-      <Typography className={ classes.address } component="p" variant="body1">{ house.address }</Typography>
       <Button onClick={ copyId( house.id ) } className={ classes.id }>
         <Typography className={ classes.id } component="p" variant="body2">
-          ID: { house.id }
+          República: { house.name }
           <FilterNoneIcon className={ classes.copyIcon }/>
         </Typography>
       </Button>
+      <Typography className={ classes.address } component="p" variant="body1">{ house.address }</Typography>
+      
     </div>
   );
 }
